@@ -25,7 +25,7 @@
 		<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
 		<sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPath>
 		<sonar.language>java</sonar.language>
-		 <start-class>com.bt.collab.alu.api.webapp.Application</start-class>
+		<start-class>com.authorizationservice.authorization.AuthorizationApplication</start-class>
 	</properties>
 <dependencies>
 		<dependency>

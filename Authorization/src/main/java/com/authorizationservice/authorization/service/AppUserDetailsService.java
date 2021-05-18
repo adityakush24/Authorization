@@ -33,6 +33,12 @@ public class AppUserDetailsService implements UserDetailsService {
     }
 
 
-    
+	public void updateUserPassword(String userName, String oldPassword, String newPassword) {
+		AuthenticationRequest authenticationRequest = authRequestRepo.findById(userName).orElseThrow();
+		if(authenticationRequest.getPassword().equals(oldPassword)) {
+			authenticationRequest.setPassword(newPassword);
+		}
+		authRequestRepo.save(authenticationRequest);
+	}
 } 
   

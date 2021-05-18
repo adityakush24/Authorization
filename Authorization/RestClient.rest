@@ -4,10 +4,13 @@ Content-Type: application/json
 
 {
     "userName" : "adyasha1",
-    "password" : "adyasha1"
+    "password" : "adityakush24"
 }
-###Authorization token validation
 
+###Update User password
+POST http://localhost:8008/authorization/changePassword?userName=adyasha1&oldPassword=adyasha1&newPassword=adityakush24 HTTP/1.1
+
+###Authorization token validation
 GET http://localhost:8008/authorization/validate HTTP/1.1
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZHlhc2hhMSIsImV4cCI6MTYxMjkzMDczNiwiaWF0IjoxNjEyOTI4OTM2fQ.w2g5DJA-mnK1Y1ZjTR0dwwu9Vf45hCPWIqVIkQsBaTA
 
