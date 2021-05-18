@@ -5,6 +5,7 @@ import com.authorizationservice.authorization.dto.VaildatingDTO;
 import com.authorizationservice.authorization.exceptions.LoginException;
 import com.authorizationservice.authorization.model.AuthenticationRequest;
 import com.authorizationservice.authorization.model.AuthenticationResponse;
+import com.authorizationservice.authorization.model.UpdatePassword;
 import com.authorizationservice.authorization.service.AppUserDetailsService;
 import com.authorizationservice.authorization.util.JwtUtil;
 
@@ -13,13 +14,13 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 
+import org.hibernate.sql.Update;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -56,9 +57,9 @@ public class AuthorizationController {
 	}
 
 	@PostMapping("/changePassword")
-	public ResponseEntity<String> updateUserPassword(@RequestParam("userName") String userName, @RequestParam("oldPassword") String oldPassword, @RequestParam("newPassword") String newPassword) {
-		userDetailsService.updateUserPassword(userName, oldPassword, newPassword);
-		return ResponseEntity.ok("Updated");
+	public ResponseEntity<String> updateUserPassword(@RequestBody UpdatePassword requestBody) {
+		userDetailsService.updateUserPassword(requestBody.getUserName(), requestBody.getOldPassword(), requestBody.getNewPassword());
+		return ResponseEntity.ok("Updated password for user " + requestBody.getUserName());
 	}
 
 	@GetMapping(path = "/validate", produces = MediaType.APPLICATION_JSON_VALUE)
